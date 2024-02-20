@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,16 +14,19 @@ import com.example.testott.R
 import com.example.testott.common.Movie
 import com.example.testott.common.MoviesRepository.getPopularMovies
 
+
 class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val poster: ImageView = itemView.findViewById(R.id.item_movie_poster)
+        private val titleTextView: TextView = itemView.findViewById(R.id.item_movie_title)
+
         fun bind(movie: Movie) {
-            Glide.with(itemView)
+            Glide.with(itemView.context)
                 .load("https://image.tmdb.org/t/p/w342${movie.poster_path}")
                 .transform(CenterCrop())
                 .into(poster)
-            itemView.item_movie_title.text = movie.title
+            titleTextView.text = movie.title
         }
     }
 
@@ -48,30 +52,4 @@ class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<Movi
     }
 
 
-    private lateinit var popularMovies: RecyclerView
-    private lateinit var popularMoviesAdapter: MoviesAdapter
-    private lateinit var popularMoviesLayoutMgr: LinearLayoutManager
-
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
-                               savedInstanceState: Bundle? ): View? {
-        root = inflater.inflate(R.layout.fragment_movie, container, false)
-
-        popularMovies = root.findViewById(R.id.popular_movies)
-        popularMoviesLayoutMgr = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-        popularMovies.layoutManager = popularMoviesLayoutMgr
-        popularMoviesAdapter = MoviesAdapter(mutableListOf())
-        popularMovies.adapter = popularMoviesAdapter
-
-        getPopularMovies()
-
-        return root
-    }
-
-    private fun onPopularMoviesFetched(movies: List<Movie>) {
-        popularMoviesAdapter.appendMovies(movies)
-    }
 }

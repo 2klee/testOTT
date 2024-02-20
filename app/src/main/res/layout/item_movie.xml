@@ -4,7 +4,7 @@
     android:layout_width="330dp"
     android:layout_height="160dp"
     app:cardCornerRadius="15dp"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="20dp"
     android:layout_gravity="center_horizontal"
 
     >
