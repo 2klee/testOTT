@@ -51,5 +51,10 @@ class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<Movi
         )
     }
 
+    fun clear() {
+        movies.clear()
+        notifyDataSetChanged()
+    }
+
 
 }

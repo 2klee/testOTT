@@ -22,6 +22,6 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.testott.ui.notifications.NotificationsFragment"
+        android:name="com.example.testott.ui.notifications.MyPageFragment"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
