@@ -6,11 +6,6 @@
     app:startDestination="@+id/navigation_movie">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.testott.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
         android:id="@+id/navigation_movie"
         android:name="com.example.testott.ui.movie.MovieFragment"
         tools:layout="@layout/fragment_movie" />
@@ -20,8 +15,9 @@
         android:name="com.example.testott.ui.dashboard.DashboardFragment"
         tools:layout="@layout/fragment_dashboard" />
 
+
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.testott.ui.notifications.MyPageFragment"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_login"
+        android:name="com.example.testott.ui.user.UserJoinFragment"
+        tools:layout="@layout/fragment_login" />
 </navigation>

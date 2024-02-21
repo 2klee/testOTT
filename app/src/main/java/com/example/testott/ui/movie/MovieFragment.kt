@@ -95,4 +95,5 @@ class MovieFragment : Fragment() {
     private fun onError() {
         Toast.makeText(activity, "Failed to fetch movies", Toast.LENGTH_SHORT).show()
     }
+
 }
