@@ -13,11 +13,11 @@
         />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_tv"
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_actor"
         android:title="@string/title_notifications" />
 
 </menu>

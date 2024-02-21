@@ -1,18 +1,15 @@
 package com.example.testott.ui.movie
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.testott.R
 import com.example.testott.common.Movie
-import com.example.testott.common.MoviesRepository.getPopularMovies
 
 
 class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){

@@ -11,4 +11,11 @@ interface Api {
         @Query("page") page : Int,
         @Query("language") language : String = "ko,en-US"
     ): Call<GetMoviesResponse>
+
+    @GET("tv/popular")
+    fun getPopularTV(
+        @Query("api_key") apiKey: String = "beb95ad63fd33a8568136afbb01979a1",
+        @Query("page") page : Int,
+        @Query("language") language : String = "ko,en-US"
+    ): Call<GetTVResponse>
 }

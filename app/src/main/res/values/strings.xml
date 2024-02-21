@@ -9,5 +9,5 @@
 
     <string name="drawer_opened">네비게이션 열림</string>
     <string name="drawer_closed">네비게이션 닫힘</string>
-
+    <string name="title_tv">TV</string>
 </resources>

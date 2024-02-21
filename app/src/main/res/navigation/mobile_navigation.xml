@@ -11,13 +11,9 @@
         tools:layout="@layout/fragment_movie" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.testott.ui.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_tv"
+        android:name="com.example.testott.ui.tv.TVFragment"
+        tools:layout="@layout/fragment_tv" />
 
 
-    <fragment
-        android:id="@+id/navigation_login"
-        android:name="com.example.testott.ui.user.UserJoinFragment"
-        tools:layout="@layout/fragment_login" />
 </navigation>
