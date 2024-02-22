@@ -12,11 +12,13 @@ import com.example.testott.R
 import com.example.testott.common.Movie
 
 
-class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
+class MoviesAdapter (var movies: MutableList<Movie>, var onMovieClick: (movie: Movie) -> Unit
+) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>(){
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val poster: ImageView = itemView.findViewById(R.id.item_movie_poster)
         private val titleTextView: TextView = itemView.findViewById(R.id.item_movie_title)
+        private val releaseDateTextView: TextView = itemView.findViewById(R.id.item_movie_releaseDate)
 
         fun bind(movie: Movie) {
             Glide.with(itemView.context)
@@ -24,6 +26,9 @@ class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<Movi
                 .transform(CenterCrop())
                 .into(poster)
             titleTextView.text = movie.title
+            releaseDateTextView.text = movie.releaseDate
+            // 아이템 클릭 시 상세보기로 이동
+            itemView.setOnClickListener { onMovieClick.invoke(movie) }
         }
     }
 
@@ -53,5 +58,5 @@ class MoviesAdapter (var movies: MutableList<Movie>) : RecyclerView.Adapter<Movi
         notifyDataSetChanged()
     }
 
-
 }
+

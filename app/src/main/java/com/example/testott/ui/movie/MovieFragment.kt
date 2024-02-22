@@ -1,5 +1,6 @@
 package com.example.testott.ui.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testott.MainActivity
 import com.example.testott.R
 import com.example.testott.common.Movie
 import com.example.testott.common.MoviesRepository
+import com.example.testott.databinding.ActivityMainBinding
 
 class MovieFragment : Fragment() {
     private lateinit var root: View
@@ -22,6 +25,8 @@ class MovieFragment : Fragment() {
     private var popularMoviesPage = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
         // Fragment의 레이아웃을 inflate하여 root에 할당
         root = inflater.inflate(R.layout.fragment_movie, container, false)
 
@@ -31,8 +36,9 @@ class MovieFragment : Fragment() {
         popularMovies.layoutManager = popularMoviesLayoutMgr
 
         // MoviesAdapter 초기화
-        popularMoviesAdapter = MoviesAdapter(mutableListOf())
+        popularMoviesAdapter = MoviesAdapter(mutableListOf()) { movie -> showMovieDetails(movie) }
         popularMovies.adapter = popularMoviesAdapter
+
 
         // 인기 영화 목록 가져오기
         getPopularMovies()
@@ -48,7 +54,6 @@ class MovieFragment : Fragment() {
 
     // 인기 영화 목록을 가져오는 메서드
     private fun getPopularMovies() {
-        Log.d("MovieFragment", "getPopularMovies() called for page $popularMoviesPage")
         MoviesRepository.getPopularMovies(
             popularMoviesPage,
             ::onPopularMoviesFetched,
@@ -95,5 +100,18 @@ class MovieFragment : Fragment() {
     private fun onError() {
         Toast.makeText(activity, "Failed to fetch movies", Toast.LENGTH_SHORT).show()
     }
+
+    // 영화 상세보기 인텐트 추가
+    private fun showMovieDetails(movie: Movie) {
+        val intent = Intent(activity, MovieDetailsActivity::class.java)
+        intent.putExtra(MainActivity.MOVIE_BACKDROP, movie.backdrop_path)
+        intent.putExtra(MainActivity.MOVIE_POSTER, movie.poster_path)
+        intent.putExtra(MainActivity.MOVIE_TITLE, movie.title)
+        intent.putExtra(MainActivity.MOVIE_RATING, movie.rating)
+        intent.putExtra(MainActivity.MOVIE_RELEASE_DATE, movie.releaseDate)
+        intent.putExtra(MainActivity.MOVIE_OVERVIEW, movie.overview)
+        startActivity(intent)
+    }
+
 
 }

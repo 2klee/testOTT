@@ -28,7 +28,7 @@ class TVFragment : Fragment() {
         popularTV = root.findViewById(R.id.popular_tv)
         popularTVLayoutMgr = LinearLayoutManager(
             context,
-            LinearLayoutManager.HORIZONTAL,
+            LinearLayoutManager.VERTICAL,
             false
         )
         popularTV.layoutManager = popularTVLayoutMgr
