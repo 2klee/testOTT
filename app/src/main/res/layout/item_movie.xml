@@ -39,7 +39,7 @@
                     android:ellipsize="end" />
 
                 <ImageView
-                    android:id="@+id/non_color_star"
+                    android:id="@+id/starImageView"
                     android:src="@drawable/non_color_star"
                     android:layout_width="24dp"
                     android:layout_height="24dp"

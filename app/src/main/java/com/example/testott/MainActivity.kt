@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -15,7 +16,6 @@ import com.example.testott.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,37 +23,41 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         setSupportActionBar(binding.toolbar)
 
-        val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_movie, R.id.navigation_tv, R.id.navigation_actor
-            )
+            ), binding.drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
 
-        toggle = ActionBarDrawerToggle(this,binding.drawerLayout, R.string.drawer_opened, R.string.drawer_closed)
+        // 툴바의 홈 버튼을 항상 표시
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.setHomeAsUpIndicator(com.google.android.material.R.drawable.ic_clear_black_24)
-        toggle.syncState()
 
+        // login_layout의 클릭 이벤트를 가로채기
+        binding.loginLayout.setOnClickListener { }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
-            return true
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 네비게이션 드로어 열기
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    // 영화 상세보기 관련 Intent 로 전달할 Extra name을 추가
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
     companion object {
         const val MOVIE_BACKDROP = "extra_movie_backdrop"
         const val MOVIE_POSTER = "extra_movie_poster"
@@ -63,4 +67,3 @@ class MainActivity : AppCompatActivity() {
         const val MOVIE_OVERVIEW = "extra_movie_overview"
     }
 }
-
