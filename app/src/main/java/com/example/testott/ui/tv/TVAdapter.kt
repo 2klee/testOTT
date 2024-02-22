@@ -18,12 +18,15 @@ class TVAdapter (var tvlist: MutableList<TV>, var onTVClick: (tv: TV) -> Unit
     inner class TvViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val poster: ImageView = itemView.findViewById(R.id.item_tv_poster)
         private val titleTextView: TextView = itemView.findViewById(R.id.item_tv_title)
+        private val firstAirDateView: TextView = itemView.findViewById(R.id.item_tv_date)
         fun bind(tv: TV) {
             Glide.with(itemView)
                 .load("https://image.tmdb.org/t/p/w342${tv.poster_path}")
                 .transform(CenterCrop())
                 .into(poster)
             titleTextView.text = tv.name
+            firstAirDateView.text = tv.first_air_date
+
             itemView.setOnClickListener { onTVClick.invoke(tv) }
         }
     }

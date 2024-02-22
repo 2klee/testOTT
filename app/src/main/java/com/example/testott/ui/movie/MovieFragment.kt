@@ -2,19 +2,18 @@ package com.example.testott.ui.movie
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testott.MainActivity
-import com.example.testott.R
 import com.example.testott.common.Movie
 import com.example.testott.common.MoviesRepository
-import com.example.testott.databinding.ActivityMainBinding
+
 
 class MovieFragment : Fragment() {
     private lateinit var root: View
@@ -26,12 +25,11 @@ class MovieFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-
         // Fragment의 레이아웃을 inflate하여 root에 할당
-        root = inflater.inflate(R.layout.fragment_movie, container, false)
+        root = inflater.inflate(com.example.testott.R.layout.fragment_movie, container, false)
 
         // RecyclerView 초기화
-        popularMovies = root.findViewById(R.id.popular_movies)
+        popularMovies = root.findViewById(com.example.testott.R.id.popular_movies)
         popularMoviesLayoutMgr = LinearLayoutManager(context)
         popularMovies.layoutManager = popularMoviesLayoutMgr
 
