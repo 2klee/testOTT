@@ -19,7 +19,7 @@ class MoviesAdapter (var movies: MutableList<Movie>, var onMovieClick: (movie: M
         private val poster: ImageView = itemView.findViewById(R.id.item_movie_poster)
         private val titleTextView: TextView = itemView.findViewById(R.id.item_movie_title)
         private val releaseDateTextView: TextView = itemView.findViewById(R.id.item_movie_releaseDate)
-        private val starImageView: ImageView = itemView.findViewById(R.id.starImageView)
+        private val moviestarImageView: ImageView = itemView.findViewById(R.id.moviestarImageView)
         private var isStarFilled = false
 
         fun bind(movie: Movie) {
@@ -31,14 +31,14 @@ class MoviesAdapter (var movies: MutableList<Movie>, var onMovieClick: (movie: M
             releaseDateTextView.text = movie.releaseDate
 
             // 별 이미지 클릭 시 상태 변경
-            starImageView.setOnClickListener {
+            moviestarImageView.setOnClickListener {
                 isStarFilled = !isStarFilled
                 if (isStarFilled) {
                     // 별이 채워져있는 이미지로 변경
-                    starImageView.setImageResource(R.drawable.fill_color_star)
+                    moviestarImageView.setImageResource(R.drawable.fill_color_star)
                 } else {
                     // 비어있는 별 이미지로 변경
-                    starImageView.setImageResource(R.drawable.non_color_star)
+                    moviestarImageView.setImageResource(R.drawable.non_color_star)
                 }
             }
 

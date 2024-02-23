@@ -1,10 +1,9 @@
 package com.example.testott
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
@@ -12,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.testott.databinding.ActivityMainBinding
+import com.example.testott.ui.user.JoinActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +38,30 @@ class MainActivity : AppCompatActivity() {
         // 툴바의 홈 버튼을 항상 표시
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // login_layout의 클릭 이벤트를 가로채기
+        // login_layout의 클릭 이벤트를 가로채기, 옆창 나온 상태에서 다른거 클릭 안되게
         binding.loginLayout.setOnClickListener { }
+        binding.mypageLayout.setOnClickListener { }
+
+
+        binding.loginSummitButton.setOnClickListener {
+            // 로그인 버튼을 클릭했을 때 로그인 레이아웃을 숨기고, 대신 마이페이지 레이아웃을 표시
+            binding.loginLayout.visibility = View.GONE
+            binding.mypageLayout.visibility = View.VISIBLE
+        }
+
+        binding.logoutButton.setOnClickListener {
+            // 로그인 버튼을 클릭했을 때 로그인 레이아웃을 숨기고, 대신 마이페이지 레이아웃을 표시
+            binding.loginLayout.visibility = View.VISIBLE
+            binding.mypageLayout.visibility = View.GONE
+        }
+
+
+        // 회원가입 버튼 클릭 시 JoinActivity 시작
+        binding.joinButton.setOnClickListener {
+            startActivity(Intent(this, JoinActivity::class.java))
+            // 현재 액티비티를 종료하여 로그인 화면을 닫음
+            finish()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
